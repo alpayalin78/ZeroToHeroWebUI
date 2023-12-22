@@ -20,13 +20,8 @@ def user_information() -> dict:
     return {"username": "Admin", "password": "Admin123"}
 
 
-@pytest.fixture(scope="session", autouse=True)
-def initialize_chrome_driver() -> dict:
-    return {"name": "Chrome"}
-
-
 @pytest.fixture
-def driver_test(initialize_chrome_driver, maximize_window):
+def driver_test():
     if initialize_chrome_driver["name"] == "Chrome":
         options = webdriver.ChromeOptions()
         # opts.add_argument("--headless")

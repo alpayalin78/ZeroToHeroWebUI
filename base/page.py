@@ -13,5 +13,34 @@ class BasePage:
         self.driver: WebDriver = driver
         self.timeout = 10
 
-    # def wait_for_element_to_be_visible(self, locator, timeout=50):
-    #     return WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located(locator))
+    def fluent_wait(self, timeout: float = 10., poll_frequency=0.5, ignored_exceptions=None) -> WebDriverWait:
+        """
+        Returns WebDriverWait object
+
+        :param timeout: Time amount to be used in waiting
+        :param poll_frequency: Frequency rate
+        :param ignored_exceptions: Ignore the exceptions except timeout
+        :return: WebDriverWait
+        """
+        return WebDriverWait(driver=self.driver, timeout=timeout,
+                             poll_frequency=poll_frequency, ignored_exceptions=ignored_exceptions)
+
+    def get_current_url(self) -> str:
+        """
+        Returns current URL
+
+        :return: str
+        """
+        return self.driver.current_url
+
+    def enter_data(self, locator: WebElement) -> str:
+        """
+        Returns current URL
+
+        :return: str
+        """
+        self.driver.sen
+
+
+
+        return self.driver.current_url
