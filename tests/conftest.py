@@ -5,13 +5,29 @@ import pytest
 import os
 
 
-@pytest.fixture(params=[
-    {"name": "Chrome"}
-])
-def driver_test(request):
-    browser_option = request.param
+@pytest.fixture(scope="session", autouse=True)
+def initialize_chrome_driver() -> dict:
+    return {"name": "Chrome"}
 
-    if browser_option["name"] == "Chrome":
+
+@pytest.fixture(scope="session", autouse=True)
+def maximize_window() -> bool:
+    return True
+
+
+@pytest.fixture(scope="session", autouse=True)
+def user_information() -> dict:
+    return {"username": "Admin", "password": "Admin123"}
+
+
+@pytest.fixture(scope="session", autouse=True)
+def initialize_chrome_driver() -> dict:
+    return {"name": "Chrome"}
+
+
+@pytest.fixture
+def driver_test(initialize_chrome_driver, maximize_window):
+    if initialize_chrome_driver["name"] == "Chrome":
         options = webdriver.ChromeOptions()
         # opts.add_argument("--headless")
         options.add_argument('--no-sandbox')
@@ -26,7 +42,9 @@ def driver_test(request):
         driver_path = "C:/Users/alpay.alin/ynt-kolaygelsin-automation-webui/chromedriver.exe"
         service = ChromeService(executable_path=driver_path)
         driver = webdriver.Chrome(service=service, options=options)
-        driver.maximize_window()
+
+        if maximize_window:
+            driver.maximize_window()
 
         yield driver
 
