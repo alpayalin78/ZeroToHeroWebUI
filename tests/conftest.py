@@ -17,11 +17,11 @@ def maximize_window() -> bool:
 
 @pytest.fixture(scope="session", autouse=True)
 def user_information() -> dict:
-    return {"username": "Admin", "password": "Admin123"}
+    return {"username": "Admin", "password": "admin123"}
 
 
 @pytest.fixture
-def driver_test():
+def driver_test(initialize_chrome_driver):
     if initialize_chrome_driver["name"] == "Chrome":
         options = webdriver.ChromeOptions()
         # opts.add_argument("--headless")
