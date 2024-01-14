@@ -1,6 +1,7 @@
 from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver
+import glamor as allure
 import pytest
 import os
 

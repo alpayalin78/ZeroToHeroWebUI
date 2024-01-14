@@ -22,7 +22,7 @@ class LoginPage(BasePage):
                                    message="Username Input is not visible!")
         self.fluent_wait(30).until(ec.visibility_of_element_located(self.PASSWORD_INPUT),
                                    message="Password Input is not visible!")
-        assert "login" in self.get_current_url(), "URL is not containing login text!"
+        assert "login" in self.fetch_current_url(), "URL is not containing login text!"
 
     def login_to_website(self, username: str, password: str):
         """
