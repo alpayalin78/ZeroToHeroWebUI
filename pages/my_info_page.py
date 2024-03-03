@@ -1,4 +1,7 @@
-import time
+from datetime import datetime
+from time import time
+
+import allure
 
 from base import BasePage
 from selenium.webdriver.support import expected_conditions as ec
@@ -153,18 +156,23 @@ class MyInfoPage(BasePage):
         """
         self.clear_keys(self.FIRST_NAME_INPUT)
         self.enter_keys(self.FIRST_NAME_INPUT, first_name)
+        self.take_screenshot(self.FIRST_NAME_INPUT, "red")
 
         self.clear_keys(self.MIDDLE_NAME_INPUT)
         self.enter_keys(self.MIDDLE_NAME_INPUT, middle_name)
+        self.take_screenshot(self.MIDDLE_NAME_INPUT, "red")
 
         self.clear_keys(self.SURNAME_INPUT)
         self.enter_keys(self.SURNAME_INPUT, surname_name)
+        self.take_screenshot(self.SURNAME_INPUT, "red")
 
         self.clear_keys(self.EMPLOYEE_ID_INPUT)
         self.enter_keys(self.EMPLOYEE_ID_INPUT, employee_id)
+        self.take_screenshot(self.EMPLOYEE_ID_INPUT, "red")
 
         self.clear_keys(self.DRIVER_LICENSE_NUMBER_INPUT)
         self.enter_keys(self.DRIVER_LICENSE_NUMBER_INPUT, driver_license_number)
+        self.take_screenshot(self.DRIVER_LICENSE_NUMBER_INPUT, "red")
 
         self.click_element(self.LICENSE_EXPIRY_DATE)
         dates_from_expiry_calendar = self.find_elements(self.LICENSE_EXPIRY_DATE_CALENDAR_WRAPPER_DATES)
@@ -172,9 +180,11 @@ class MyInfoPage(BasePage):
 
         self.clear_keys(self.SSN_NUMBER_INPUT)
         self.enter_keys(self.SSN_NUMBER_INPUT, ssn_number)
+        self.take_screenshot(self.SSN_NUMBER_INPUT, "red")
 
         self.clear_keys(self.SIN_NUMBER_INPUT)
         self.enter_keys(self.SIN_NUMBER_INPUT, sin_number)
+        self.take_screenshot(self.SIN_NUMBER_INPUT, "red")
 
         self.click_element(self.NATIONALITY_DROPDOWN)
         self.choose_dropdown(cursor=self.NATIONALITY_DROPDOWN_OPTIONS, selection=nationality)
@@ -192,15 +202,16 @@ class MyInfoPage(BasePage):
         if gender != self.fetch_element_text(gender_selection[0]):
             self.click_element(gender_selection[0])
 
-        self.clear_keys(self.MILITARY_SERVICE_INPUT)
-        self.enter_keys(self.MILITARY_SERVICE_INPUT, military_service)
+        # self.clear_keys(self.MILITARY_SERVICE_INPUT)
+        # self.enter_keys(self.MILITARY_SERVICE_INPUT, military_service)
+        #
+        # if smoker:
+        #     self.click_with_javascript_method(self.SMOKER_CHECK_BOX)
 
-        if smoker:
-            self.click_with_javascript_method(self.SMOKER_CHECK_BOX)
+        # self.click_element(self.BLOOD_TYPE_DROPDOWN)
+        # self.choose_dropdown(cursor=self.BLOOD_TYPE_DROPDOWN_OPTIONS, selection=blood_type)
 
-        self.click_element(self.BLOOD_TYPE_DROPDOWN)
-        self.choose_dropdown(cursor=self.BLOOD_TYPE_DROPDOWN_OPTIONS, selection=blood_type)
-
+        self.scroll_to_element(self.ATTACHMENT_ADD_BUTTON)
         self.click_element(self.ATTACHMENT_ADD_BUTTON)
         self.fluent_wait(5).until(ec.presence_of_all_elements_located(self.COMMENT_SECTION))
 

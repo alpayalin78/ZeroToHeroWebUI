@@ -10,4 +10,7 @@ from pages.my_info_page import MyInfoPage
 from pages.performance_page import PerformancePage
 from pages.PIM_page import PIMPage
 from pages.recruitment_page import RecruitmentPage
+from pages.amazon_login_page import AmazonLoginPage
+from pages.amazon_my_account_page import AmazonMyAccountPage
+from pages.amazon_main_page import AmazonMainPage
 from pages.time_page import TimePage
